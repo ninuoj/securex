@@ -1,0 +1,458 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_023M6RTWOCYQ13gb9G0clkPF1F5AOnVVUI5",
+    "name": "Ark demo for Orange",
+    "title": "Ark demo for Orange",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "New A Class",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_023M99METAAEN3NZM8RBcANkQ5YApe6j2dI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "{ \"primary\": { \"address\": \"[$activity.Replace String.output.Result string$]\", \"mask\": \"255.255.255.0\" } }",
+          "scope": "local",
+          "name": "New interface configuration",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_023M79XC3A6HZ0z6E4C53F0AUrZ1YloA9CS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "API Output",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_023M6UO1M955K1aK64ohSLQRH7Jwh4TkodJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "API PUT input",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_023M7NKM2I90C0lPtnpzhYul9IO9Ue5tGjK",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Ark demo for Orange",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_023M5V0XL1Y2A4AjwWUfTSr1thOfPLstyqx",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_023M6S5PYDH456AFYDe0mff8hv08Eza26z3",
+        "name": "HTTP Request",
+        "title": "Get Cisco interfaces",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/yang-data+json",
+          "action_timeout": 30,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get Cisco interfaces",
+          "method": "GET",
+          "relative_url": "restconf/data/native/interface",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_023M6U5DST6Q32UhDgHFVpqPPlI1AMrTmFg",
+        "name": "Set Variables",
+        "title": "Copy API output",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Copy API output",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_023M6RTWOCYQ13gb9G0clkPF1F5AOnVVUI5.local.variable_workflow_023M6UO1M955K1aK64ohSLQRH7Jwh4TkodJ$",
+              "variable_value_new": "$activity.definition_activity_023M6S5PYDH456AFYDe0mff8hv08Eza26z3.output.response_body$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_023M70UAGC2651emt9tSbglQqI4qnCOfzWp",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "JSONPath Query",
+          "input_json": "$workflow.definition_workflow_023M6RTWOCYQ13gb9G0clkPF1F5AOnVVUI5.local.variable_workflow_023M6UO1M955K1aK64ohSLQRH7Jwh4TkodJ$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.Cisco-IOS-XE-native:interface.GigabitEthernet[?(@.name==\"2.24\")].ip.address.primary.address",
+              "jsonpath_query_name": "ip_address",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_023M782ALGJO500rB1TmsYZUCWLvxXgEpjw",
+        "name": "Condition Block",
+        "title": "Was interface 2.24 found ?",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Was interface 2.24 found ?",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_023M782B4J4YX684Y8kKhXRpxxTiwci6rOr",
+            "name": "Condition Branch",
+            "title": "Interface found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_023M70UAGC2651emt9tSbglQqI4qnCOfzWp.output.succeeded$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "Interface found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_023M7BRS3WXL45HSCX38yaVa48Xd6qGWdJh",
+                "name": "Replace String",
+                "title": "Change IP subnet",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Change IP subnet",
+                  "input_string": "$activity.definition_activity_023M70UAGC2651emt9tSbglQqI4qnCOfzWp.output.jsonpath_queries.ip_address$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "172",
+                      "replacement_string": "$trigger.triggerevent_023M98UA97NCT0c3I9PYA4r7xywHfaEPmYm.output.request_body$"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_023M794W4RBTO0Jm0UeELg32SoXBzyu9dFw",
+                "name": "Set Variables",
+                "title": "Prepare JSON payload",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Prepare JSON payload",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_023M6RTWOCYQ13gb9G0clkPF1F5AOnVVUI5.local.variable_workflow_023M7NKM2I90C0lPtnpzhYul9IO9Ue5tGjK$",
+                      "variable_value_new": "{ \"primary\": { \"address\": \"$activity.definition_activity_023M7BRS3WXL45HSCX38yaVa48Xd6qGWdJh.output.result_string$\", \"mask\": \"255.255.255.0\" } }"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_023M7VHFLN1HF3fwY1QvYCWpQsgqw1Sf14R",
+                "name": "HTTP Request",
+                "title": "HTTP Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/yang-data+json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "body": "$workflow.definition_workflow_023M6RTWOCYQ13gb9G0clkPF1F5AOnVVUI5.local.variable_workflow_023M7NKM2I90C0lPtnpzhYul9IO9Ue5tGjK$",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Content-type",
+                      "value": "application/yang-data+json"
+                    }
+                  ],
+                  "display_name": "HTTP Request",
+                  "method": "PATCH",
+                  "relative_url": "restconf/data/native/interface/GigabitEthernet=2.24/ip/address/primary",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_023M7QM5YXJN21eE4gffi4ZbXZEnWtKyF3y",
+                "name": "Send Email",
+                "title": "Send Email",
+                "type": "email.smtp_send_email",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "body": "Job done !",
+                  "continue_if_one_address_valid": false,
+                  "continue_on_failure": false,
+                  "display_name": "Send Email",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "subject": "Yes",
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT"
+                  },
+                  "to": "philippe.jounin@orange.com"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_023M782BG52XH76KSnXIBvzHQqUrePOwrM3",
+            "name": "Condition Branch",
+            "title": "Interface Not found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_023M70UAGC2651emt9tSbglQqI4qnCOfzWp.output.succeeded$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "display_name": "Interface Not found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_023M8VL2OYWMR7TbNOAEcRNT5dvw4AKz4KH",
+                "name": "Send Email",
+                "title": "Send Email",
+                "type": "email.smtp_send_email",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "body": "Ca a pô marché, mais l'action avait-elle été déjà faite ?",
+                  "continue_if_one_address_valid": false,
+                  "continue_on_failure": false,
+                  "display_name": "Send Email",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "subject": "Beuh",
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT"
+                  },
+                  "to": "philippe.jounin@orange.com"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA"
+    ]
+  },
+  "categories": {
+    "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA": {
+      "unique_name": "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA",
+      "name": "Pod114",
+      "title": "Pod114",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "triggers": {
+    "triggerevent_023M98UA97NCT0c3I9PYA4r7xywHfaEPmYm": {
+      "workflow_id": "definition_workflow_023M6RTWOCYQ13gb9G0clkPF1F5AOnVVUI5",
+      "name": "Pod114 trigger my workdshop",
+      "title": "",
+      "lowercase_name": "event.pod114_trigger_my_workdshop",
+      "type": "event",
+      "base_type": "trigger",
+      "ref_id": "event_webhook_023M982FXTLP95nvErzbfHfU6prUpuo7G0b",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerevent_023M98UA97NCT0c3I9PYA4r7xywHfaEPmYm",
+      "object_type": "triggerevent"
+    }
+  },
+  "events": {
+    "event_webhook_023M982FXTLP95nvErzbfHfU6prUpuo7G0b": {
+      "name": "Pod114 Event from webhook",
+      "title": "Pod114 Event from webhook",
+      "type": "webhook.event",
+      "base_type": "event",
+      "object_type": "event_webhook",
+      "target_id": "",
+      "webhook_id": "webhook_023M96XFCDVTO0luYfxpIkpcI1Nbef6aOnc",
+      "version": "1.0.0",
+      "properties": {
+        "conditions": {
+          "left_operand": "$output.request_body$",
+          "operator": "mregex",
+          "right_operand": "(\\d+)"
+        },
+        "title": "Pod114 Event from webhook",
+        "webhook_id": "webhook_023M96XFCDVTO0luYfxpIkpcI1Nbef6aOnc"
+      },
+      "unique_name": "event_webhook_023M982FXTLP95nvErzbfHfU6prUpuo7G0b"
+    }
+  },
+  "targets": {
+    "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT": {
+      "unique_name": "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT",
+      "name": "Pod114-SMTP-Target",
+      "title": "Pod114-SMTP-Target",
+      "type": "email.smtp_endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_023F8UIBK0MDF0yS0sZ5qB3OWQHqyEar7M2",
+        "display_name": "Pod114-SMTP-Target",
+        "no_runtime_user": false,
+        "port": 587,
+        "protocol": "SMTP",
+        "server": "smtp.gmail.com"
+      }
+    },
+    "definition_target_023M5V0XL1Y2A4AjwWUfTSr1thOfPLstyqx": {
+      "unique_name": "definition_target_023M5V0XL1Y2A4AjwWUfTSr1thOfPLstyqx",
+      "name": "Cisco lab router",
+      "title": "Cisco lab router",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_023M5UDM9AD8S79IR0iNUATzUiL26p6Haex",
+        "disable_certificate_validation": true,
+        "display_name": "Cisco lab router",
+        "host": "amplivia.sclab.space",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "port": 4431,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_023F8UIBK0MDF0yS0sZ5qB3OWQHqyEar7M2": {
+      "unique_name": "definition_runtime_user_023F8UIBK0MDF0yS0sZ5qB3OWQHqyEar7M2",
+      "name": "Pod114-Account",
+      "title": "Pod114-Account",
+      "type": "runtime_user.email_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "Pod114-Account",
+        "password": "*****",
+        "sender": "ciscoliveamsterdam2023@gmail.com"
+      }
+    },
+    "definition_runtime_user_023M5UDM9AD8S79IR0iNUATzUiL26p6Haex": {
+      "unique_name": "definition_runtime_user_023M5UDM9AD8S79IR0iNUATzUiL26p6Haex",
+      "name": "Cisco account",
+      "title": "Cisco account",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "Basic",
+        "basic_password": "*****",
+        "basic_username": "cisco",
+        "display_name": "Cisco account"
+      }
+    }
+  },
+  "webhooks": {
+    "webhook_023M96XFCDVTO0luYfxpIkpcI1Nbef6aOnc": {
+      "name": "Pod 114 webhook",
+      "title": "Pod 114 webhook",
+      "type": "generic.webhook",
+      "base_type": "webhook",
+      "object_type": "webhook",
+      "version": "1.0.0",
+      "properties": {
+        "display_name": "Pod 114 webhook",
+        "request_content_type": "application/json"
+      },
+      "unique_name": "webhook_023M96XFCDVTO0luYfxpIkpcI1Nbef6aOnc"
+    }
+  }
+}
