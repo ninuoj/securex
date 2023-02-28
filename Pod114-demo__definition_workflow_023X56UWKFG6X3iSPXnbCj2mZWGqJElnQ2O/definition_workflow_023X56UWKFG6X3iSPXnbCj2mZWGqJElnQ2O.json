@@ -58,7 +58,7 @@
           "continue_on_failure": false,
           "display_name": "getCiscoInterfaces",
           "method": "GET",
-          "relative_url": "restconf/data/native/interfaces",
+          "relative_url": "restconf/data/native/interface",
           "runtime_user": {
             "target_default": true
           },
@@ -90,6 +90,57 @@
           "skip_execution": false
         },
         "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_023X638Z3EQKH7bFoWJcKefhdMZrnSraYKS",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_023X638ZFJ6MV5wOEpGygfCdMKLCiovBYtr",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_023X638ZPRMGF4UMi76ZESZpVeEUcC4ArH4",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          }
+        ]
       }
     ],
     "categories": [
