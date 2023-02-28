@@ -205,12 +205,12 @@
                     "target_default": true
                   },
                   "skip_execution": false,
-                  "subject": "Job Done on",
+                  "subject": "Job Done on [$target]",
                   "target": {
                     "override_workflow_target": true,
                     "target_id": "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT"
                   },
-                  "to": "philippe.jounin@orange.com"
+                  "to": "ninuoj@yopmail.com"
                 },
                 "object_type": "definition_activity"
               }
@@ -242,7 +242,7 @@
                 "base_type": "activity",
                 "properties": {
                   "action_timeout": 180,
-                  "body": "JSON Path failed :\n$activity.definition_activity_023X5L778KMUR0BPo6eBh2AY83syKUYxbxB.output.error.message$",
+                  "body": "JSON Path failed :\n$activity.definition_activity_023X5L778KMUR0BPo6eBh2AY83syKUYxbxB.output.error.message$\n\n",
                   "continue_if_one_address_valid": false,
                   "continue_on_failure": false,
                   "display_name": "Send Email",
@@ -255,7 +255,7 @@
                     "override_workflow_target": true,
                     "target_id": "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT"
                   },
-                  "to": "philippe.jounin@orange.com"
+                  "to": "ninuoj@yopmail.com"
                 },
                 "object_type": "definition_activity"
               }
