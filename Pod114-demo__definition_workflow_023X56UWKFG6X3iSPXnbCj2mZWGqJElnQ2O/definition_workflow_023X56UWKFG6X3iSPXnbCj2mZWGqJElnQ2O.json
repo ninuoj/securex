@@ -38,80 +38,143 @@
     "object_type": "definition_workflow",
     "actions": [
       {
-        "unique_name": "definition_activity_023XA8SB6D1AX4hyqZFfN7VBRI1b5M9OZAj",
-        "name": "HTTP Request",
-        "title": "Get hostname",
-        "type": "web-service.http_request",
+        "unique_name": "definition_activity_023XCYR5XY38V0pVY3d1EMNcINv8IQEywT7",
+        "name": "Parallel Block",
+        "title": "Parallel Block",
+        "type": "logic.parallel",
         "base_type": "activity",
         "properties": {
-          "accept": "application/yang-data+json",
-          "action_timeout": 180,
-          "allow_auto_redirect": true,
-          "allow_headers_redirect": false,
-          "content_type": "application/json",
-          "continue_on_error_status_code": false,
           "continue_on_failure": false,
-          "display_name": "Get hostname",
-          "method": "GET",
-          "relative_url": "restconf/data/native/hostname",
-          "runtime_user": {
-            "target_default": true
-          },
-          "skip_execution": false,
-          "target": {
-            "use_workflow_target": true
-          }
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_023X5IH7WJZ6K7IpatdF6aHqYJyS3l1x5bZ",
-        "name": "HTTP Request",
-        "title": "getCiscoInterfaces",
-        "type": "web-service.http_request",
-        "base_type": "activity",
-        "properties": {
-          "accept": "application/yang-data+json",
-          "action_timeout": 180,
-          "allow_auto_redirect": true,
-          "allow_headers_redirect": false,
-          "content_type": "application/json",
-          "continue_on_error_status_code": false,
-          "continue_on_failure": false,
-          "display_name": "getCiscoInterfaces",
-          "method": "GET",
-          "relative_url": "restconf/data/native/interface",
-          "runtime_user": {
-            "target_default": true
-          },
-          "skip_execution": false,
-          "target": {
-            "use_workflow_target": true
-          }
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_023X5L778KMUR0BPo6eBh2AY83syKUYxbxB",
-        "name": "JSONPath Query",
-        "title": "JSONPath Query",
-        "type": "corejava.jsonpathquery",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "continue_on_failure": true,
-          "display_name": "JSONPath Query",
-          "input_json": "$activity.definition_activity_023X5IH7WJZ6K7IpatdF6aHqYJyS3l1x5bZ.output.response_body$",
-          "jsonpath_queries": [
-            {
-              "jsonpath_query": "$.Cisco-IOS-XE-native:interface.GigabitEthernet[?(@.name==\"2.24\")].ip.address.primary.address",
-              "jsonpath_query_name": "ip_address",
-              "jsonpath_query_type": "string"
-            }
-          ],
+          "display_name": "Parallel Block",
           "skip_execution": false
         },
-        "object_type": "definition_activity"
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_023XCYR6CHT5W0R9Dl0KCCpSuV1oTYoE51s",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_023X5IH7WJZ6K7IpatdF6aHqYJyS3l1x5bZ",
+                "name": "HTTP Request",
+                "title": "getCiscoInterfaces",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/yang-data+json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "getCiscoInterfaces",
+                  "method": "GET",
+                  "relative_url": "restconf/data/native/interface",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_023X5L778KMUR0BPo6eBh2AY83syKUYxbxB",
+                "name": "JSONPath Query",
+                "title": "JSONPath Query",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": true,
+                  "display_name": "JSONPath Query",
+                  "input_json": "$activity.definition_activity_023X5IH7WJZ6K7IpatdF6aHqYJyS3l1x5bZ.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.Cisco-IOS-XE-native:interface.GigabitEthernet[?(@.name==\"2.24\")].ip.address.primary.address",
+                      "jsonpath_query_name": "ip_address",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_023XCYR6NA8DQ3qq45wKi4MBY7SA9c2RwVy",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_023XA8SB6D1AX4hyqZFfN7VBRI1b5M9OZAj",
+                "name": "HTTP Request",
+                "title": "Get hostname",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/yang-data+json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "Get hostname",
+                  "method": "GET",
+                  "relative_url": "restconf/data/native/hostname",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_023XCZ7U7103V4oSE7vtlw0V9EVNawPuY6f",
+                "name": "JSONPath Query",
+                "title": "extract hostname",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "extract hostname",
+                  "input_json": "$activity.definition_activity_023XA8SB6D1AX4hyqZFfN7VBRI1b5M9OZAj.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.Cisco-IOS-XE-native:hostname",
+                      "jsonpath_query_name": "hostname",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
       },
       {
         "unique_name": "definition_activity_023X80HD757I90nXDgy693LcZyBJxilKerj",
@@ -232,7 +295,7 @@
                     "target_default": true
                   },
                   "skip_execution": false,
-                  "subject": "Job Done on $activity.definition_activity_023XA8SB6D1AX4hyqZFfN7VBRI1b5M9OZAj.output.response_body$",
+                  "subject": "Job Done on $activity.definition_activity_023XCZ7U7103V4oSE7vtlw0V9EVNawPuY6f.output.jsonpath_queries.hostname$",
                   "target": {
                     "override_workflow_target": true,
                     "target_id": "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT"
