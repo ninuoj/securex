@@ -1,0 +1,137 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_023XBP6GTEX8D0ZLUqMxp3C5ldEytRZrbVO",
+    "name": "Get target name",
+    "title": "Get target name",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Target name",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_023XBQ6T1WLCJ5PbmgNqy9PO8GURbXHbVaH",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Get target name",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_023XBPGJSH6L42GiMPUCqsar48hjYBqwjxc",
+        "name": "HTTP Request",
+        "title": "HTTP Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/yang-data.json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "HTTP Request",
+          "method": "GET",
+          "relative_url": "restconf/data/native/hostname",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_023XBPCEDALOB5jrcJQna47oBiIZLv327JC",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_023XBP6GTEX8D0ZLUqMxp3C5ldEytRZrbVO.local.variable_workflow_023XBQ6T1WLCJ5PbmgNqy9PO8GURbXHbVaH$",
+              "variable_value_new": "$activity.definition_activity_023XBPGJSH6L42GiMPUCqsar48hjYBqwjxc.output.response_body$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA"
+    ]
+  },
+  "categories": {
+    "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA": {
+      "unique_name": "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA",
+      "name": "Pod114",
+      "title": "Pod114",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To": {
+      "unique_name": "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To",
+      "name": "Pod114 Cisco lab router - demo",
+      "title": "Pod114 Cisco lab router - demo",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_023X3QHX11AQR6aWrel6L8WW9YaznIzShod",
+        "disable_certificate_validation": true,
+        "display_name": "Pod114 Cisco lab router - demo",
+        "host": "amplivia.sclab.space",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "port": 4431,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_023X3QHX11AQR6aWrel6L8WW9YaznIzShod": {
+      "unique_name": "definition_runtime_user_023X3QHX11AQR6aWrel6L8WW9YaznIzShod",
+      "name": "Pod114 - cisco demo",
+      "title": "Pod114 - cisco demo",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "Basic",
+        "basic_password": "*****",
+        "basic_username": "cisco",
+        "display_name": "Pod114 - cisco demo"
+      }
+    }
+  }
+}
