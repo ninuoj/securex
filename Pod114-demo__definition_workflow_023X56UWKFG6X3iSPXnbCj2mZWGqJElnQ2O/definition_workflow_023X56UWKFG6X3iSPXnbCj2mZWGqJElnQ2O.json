@@ -30,14 +30,9 @@
         "target_default": true
       },
       "target": {
-        "execute_on_target_group": true,
-        "target_group": {
-          "target_group_id": "target_group_023X5ETEA0F0F1wVqMgcyo1lPfs82n0v1Uc",
-          "run_on_all_targets": true,
-          "selected_target_types": [
-            "web-service.endpoint"
-          ]
-        }
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To",
+        "execute_on_workflow_target": true
       }
     },
     "object_type": "definition_workflow",
@@ -64,7 +59,7 @@
           },
           "skip_execution": false,
           "target": {
-            "use_workflow_target_group": true
+            "use_workflow_target": true
           }
         },
         "object_type": "definition_activity"
@@ -189,7 +184,7 @@
                   },
                   "skip_execution": false,
                   "target": {
-                    "use_workflow_target_group": true
+                    "use_workflow_target": true
                   }
                 },
                 "object_type": "definition_activity"
@@ -202,7 +197,7 @@
                 "base_type": "activity",
                 "properties": {
                   "action_timeout": 180,
-                  "body": "Following configuration was sent on target $workflow.definition_workflow_023X56UWKFG6X3iSPXnbCj2mZWGqJElnQ2O.local.variable_workflow_023X58FVQA7AG6kgaz419jNjEVRmoUP1gpd$$workflow.definition_workflow_023X56UWKFG6X3iSPXnbCj2mZWGqJElnQ2O.local.variable_workflow_023X58FVQA7AG6kgaz419jNjEVRmoUP1gpd$\n\n",
+                  "body": "Following configuration was sent on target $workflow.definition_workflow_023X56UWKFG6X3iSPXnbCj2mZWGqJElnQ2O.local.variable_workflow_023X58FVQA7AG6kgaz419jNjEVRmoUP1gpd$\n\n",
                   "continue_if_one_address_valid": false,
                   "continue_on_failure": false,
                   "display_name": "Brief",
@@ -384,27 +379,6 @@
         "basic_username": "cisco",
         "display_name": "Pod114 - cisco demo"
       }
-    }
-  },
-  "target_groups": {
-    "target_group_023X5ETEA0F0F1wVqMgcyo1lPfs82n0v1Uc": {
-      "unique_name": "target_group_023X5ETEA0F0F1wVqMgcyo1lPfs82n0v1Uc",
-      "name": "pod114 - targets",
-      "title": "pod114 - targets",
-      "type": "generic.target_group",
-      "base_type": "target_group",
-      "version": "1.0.0",
-      "targets": [
-        {
-          "data_target_type": "web-service.endpoint",
-          "view_target_type": "web-service.endpoint",
-          "include_all_targets": false,
-          "selected_target_ids": [
-            "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To"
-          ]
-        }
-      ],
-      "object_type": "target_group"
     }
   },
   "webhooks": {
