@@ -38,6 +38,33 @@
     "object_type": "definition_workflow",
     "actions": [
       {
+        "unique_name": "definition_activity_023XA8SB6D1AX4hyqZFfN7VBRI1b5M9OZAj",
+        "name": "HTTP Request",
+        "title": "Get hostname",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/yang-data+json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get hostname",
+          "method": "GET",
+          "relative_url": "restconf/data/native/hostname",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
         "unique_name": "definition_activity_023X5IH7WJZ6K7IpatdF6aHqYJyS3l1x5bZ",
         "name": "HTTP Request",
         "title": "getCiscoInterfaces",
@@ -197,7 +224,7 @@
                 "base_type": "activity",
                 "properties": {
                   "action_timeout": 180,
-                  "body": "Following configuration was sent on target $workflow.definition_workflow_023X56UWKFG6X3iSPXnbCj2mZWGqJElnQ2O.local.variable_workflow_023X58FVQA7AG6kgaz419jNjEVRmoUP1gpd$\n\n",
+                  "body": "Following configuration was sent on target $workflow.definition_workflow_023X56UWKFG6X3iSPXnbCj2mZWGqJElnQ2O.local.variable_workflow_023X58FVQA7AG6kgaz419jNjEVRmoUP1gpd$\n\n\n\n",
                   "continue_if_one_address_valid": false,
                   "continue_on_failure": false,
                   "display_name": "Brief",
@@ -205,7 +232,7 @@
                     "target_default": true
                   },
                   "skip_execution": false,
-                  "subject": "Job Done on [$target]",
+                  "subject": "Job Done on $activity.definition_activity_023XA8SB6D1AX4hyqZFfN7VBRI1b5M9OZAj.output.response_body$",
                   "target": {
                     "override_workflow_target": true,
                     "target_id": "definition_target_023F8USQG6ETZ08K2MNzf1rrKCliQdgw4aT"
