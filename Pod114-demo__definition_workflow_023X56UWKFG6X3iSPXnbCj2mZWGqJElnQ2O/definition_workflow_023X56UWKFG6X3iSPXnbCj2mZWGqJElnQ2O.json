@@ -68,6 +68,28 @@
           }
         },
         "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_023X5L778KMUR0BPo6eBh2AY83syKUYxbxB",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "JSONPath Query",
+          "input_json": "$activity.definition_activity_023X5IH7WJZ6K7IpatdF6aHqYJyS3l1x5bZ.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.Cisco-IOS-XE-native:interface.GigabitEthernet[?(@.name==\"2.24\")].ip.address.primary.address",
+              "jsonpath_query_name": "ip_address",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
       }
     ],
     "categories": [
