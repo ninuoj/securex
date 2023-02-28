@@ -1,0 +1,197 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_023X56UWKFG6X3iSPXnbCj2mZWGqJElnQ2O",
+    "name": "Pod114 - my Demo",
+    "title": "Pod114 - my Demo",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "API PUT Gi2.24 Payload",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_023X58FVQA7AG6kgaz419jNjEVRmoUP1gpd",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Pod114 - my Demo",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_023X5ETEA0F0F1wVqMgcyo1lPfs82n0v1Uc",
+          "run_on_all_targets": true,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ]
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_023X5IH7WJZ6K7IpatdF6aHqYJyS3l1x5bZ",
+        "name": "HTTP Request",
+        "title": "getCiscoInterfaces",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/yang-data+json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "getCiscoInterfaces",
+          "method": "GET",
+          "relative_url": "restconf/data/native/interfaces",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target_group": true
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA"
+    ]
+  },
+  "categories": {
+    "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA": {
+      "unique_name": "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA",
+      "name": "Pod114",
+      "title": "Pod114",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "triggers": {
+    "triggerevent_023X5GW53LFVE5ukc8IvAanetYEZ561vKXh": {
+      "workflow_id": "definition_workflow_023X56UWKFG6X3iSPXnbCj2mZWGqJElnQ2O",
+      "name": "Pod114 - my Trigger demo",
+      "title": "",
+      "lowercase_name": "event.pod114_-_my_trigger_demo",
+      "type": "event",
+      "base_type": "trigger",
+      "ref_id": "event_webhook_023X5DWMJ5OAH1jC6i0pTQLbJm4IgLv9nsd",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerevent_023X5GW53LFVE5ukc8IvAanetYEZ561vKXh",
+      "object_type": "triggerevent"
+    }
+  },
+  "events": {
+    "event_webhook_023X5DWMJ5OAH1jC6i0pTQLbJm4IgLv9nsd": {
+      "name": "Pod114 - my Event - demo",
+      "title": "Pod114 - my Event - demo",
+      "type": "webhook.event",
+      "base_type": "event",
+      "object_type": "event_webhook",
+      "target_id": "",
+      "webhook_id": "webhook_023X3W8Z6RISN4iacT6H9On5kRuDbjm0fl1",
+      "version": "1.0.0",
+      "properties": {
+        "conditions": {
+          "left_operand": "$output.request_body$",
+          "operator": "mregex",
+          "right_operand": "(\\d+)"
+        },
+        "title": "Pod114 - my Event - demo",
+        "webhook_id": "webhook_023X3W8Z6RISN4iacT6H9On5kRuDbjm0fl1"
+      },
+      "unique_name": "event_webhook_023X5DWMJ5OAH1jC6i0pTQLbJm4IgLv9nsd"
+    }
+  },
+  "targets": {
+    "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To": {
+      "unique_name": "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To",
+      "name": "Pod114 Cisco lab router - demo",
+      "title": "Pod114 Cisco lab router - demo",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_023X3QHX11AQR6aWrel6L8WW9YaznIzShod",
+        "disable_certificate_validation": true,
+        "display_name": "Pod114 Cisco lab router - demo",
+        "host": "amplivia.sclab.space",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "port": 4431,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_023X3QHX11AQR6aWrel6L8WW9YaznIzShod": {
+      "unique_name": "definition_runtime_user_023X3QHX11AQR6aWrel6L8WW9YaznIzShod",
+      "name": "Pod114 - cisco demo",
+      "title": "Pod114 - cisco demo",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "Basic",
+        "basic_password": "*****",
+        "basic_username": "cisco",
+        "display_name": "Pod114 - cisco demo"
+      }
+    }
+  },
+  "target_groups": {
+    "target_group_023X5ETEA0F0F1wVqMgcyo1lPfs82n0v1Uc": {
+      "unique_name": "target_group_023X5ETEA0F0F1wVqMgcyo1lPfs82n0v1Uc",
+      "name": "pod114 - targets",
+      "title": "pod114 - targets",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": false,
+          "selected_target_ids": [
+            "definition_target_023X3RI1U1FER2JzToTgXURndCv2Nu6s5To"
+          ]
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "webhooks": {
+    "webhook_023X3W8Z6RISN4iacT6H9On5kRuDbjm0fl1": {
+      "name": "Pod114 - my webHook demo",
+      "title": "Pod114 - my webHook demo",
+      "type": "generic.webhook",
+      "base_type": "webhook",
+      "object_type": "webhook",
+      "version": "1.0.0",
+      "properties": {
+        "display_name": "Pod114 - my webHook demo",
+        "request_content_type": "application/json"
+      },
+      "unique_name": "webhook_023X3W8Z6RISN4iacT6H9On5kRuDbjm0fl1"
+    }
+  }
+}
