@@ -5,7 +5,21 @@
     "title": "Pod114 - demo ",
     "type": "generic.workflow",
     "base_type": "workflow",
-    "variables": null,
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "GI2.24 config",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_023Y5878QIT0U24BtuBpwz3pkwPTqdOGfv1",
+        "object_type": "variable_workflow"
+      }
+    ],
     "properties": {
       "atomic": {
         "is_atomic": false
@@ -76,6 +90,130 @@
           "skip_execution": false
         },
         "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_023Y55BRSPP346pYWXJhe7CXReJOi2414Rm",
+        "name": "Condition Block",
+        "title": "JSON succeeded ?",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "JSON succeeded ?",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_023Y55BS2EXB52M9MMg9s1SLeATysvhs2BQ",
+            "name": "Condition Branch",
+            "title": "Interface 2.24 found ?",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_023Y4Z1Y1QC4R7hQdyH5r8tyouh3Gs4m35H.output.succeeded$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "Interface 2.24 found ?",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_023Y56R8NZW600xfFIVpIQKoUhyDt0gvQan",
+                "name": "Replace String",
+                "title": "Replace String",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Replace String",
+                  "input_string": "$activity.definition_activity_023Y4Z1Y1QC4R7hQdyH5r8tyouh3Gs4m35H.output.jsonpath_queries.ip_address$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "172",
+                      "replacement_string": "10"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_023Y57N4L76L92lW7ffAAYVDCQiABNjtFOk",
+                "name": "Set Variables",
+                "title": "Template",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Template",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_023Y4U3T3WJY27fASV259krQoGOALPOLs5p.local.variable_workflow_023Y5878QIT0U24BtuBpwz3pkwPTqdOGfv1$",
+                      "variable_value_new": "{ \"primary\": { \"address\": \"$activity.definition_activity_023Y4Z1Y1QC4R7hQdyH5r8tyouh3Gs4m35H.output.jsonpath_queries.ip_address$\", \"mask\": \"255.255.255.0\" } }"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_023Y595AW9P9V2G3IW1lOx7cjrGJ5G0Rkfy",
+                "name": "HTTP Request",
+                "title": "HTTP Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "application/yang-data+json",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Content-type",
+                      "value": "application/yang-data+json"
+                    }
+                  ],
+                  "display_name": "HTTP Request",
+                  "method": "PUT",
+                  "relative_url": "restconf/data/native/interface/GigabitEthernet=2.24/ip/address/primary",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target_group": true
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_023Y55BSE9GV20cpsq46JxOpCLBNGKT94vQ",
+            "name": "Condition Branch",
+            "title": "Interface 2.24 not found ",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_023Y4Z1Y1QC4R7hQdyH5r8tyouh3Gs4m35H.output.succeeded$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "display_name": "Interface 2.24 not found ",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          }
+        ]
       }
     ],
     "categories": [
