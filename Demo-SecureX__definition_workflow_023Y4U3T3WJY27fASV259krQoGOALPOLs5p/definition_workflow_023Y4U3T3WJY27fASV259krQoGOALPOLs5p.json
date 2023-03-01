@@ -59,7 +59,7 @@
           },
           "skip_execution": false,
           "target": {
-            "use_workflow_target_group": true
+            "use_workflow_target": true
           }
         },
         "object_type": "definition_activity"
@@ -138,6 +138,25 @@
                 "object_type": "definition_activity"
               },
               {
+                "unique_name": "definition_activity_023Y5K86QCL2Q6gIUMIM5Hzq9IBHzDnzh7K",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_023Y4U3T3WJY27fASV259krQoGOALPOLs5p.local.variable_workflow_023Y5878QIT0U24BtuBpwz3pkwPTqdOGfv1$",
+                      "variable_value_new": "$activity.definition_activity_023Y56R8NZW600xfFIVpIQKoUhyDt0gvQan.output.result_string$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
                 "unique_name": "definition_activity_023Y57N4L76L92lW7ffAAYVDCQiABNjtFOk",
                 "name": "Set Variables",
                 "title": "Template",
@@ -167,6 +186,7 @@
                   "action_timeout": 180,
                   "allow_auto_redirect": true,
                   "allow_headers_redirect": false,
+                  "body": "$workflow.definition_workflow_023Y4U3T3WJY27fASV259krQoGOALPOLs5p.local.variable_workflow_023Y5878QIT0U24BtuBpwz3pkwPTqdOGfv1$",
                   "continue_on_error_status_code": false,
                   "continue_on_failure": false,
                   "custom_headers": [
@@ -183,7 +203,7 @@
                   },
                   "skip_execution": false,
                   "target": {
-                    "use_workflow_target_group": true
+                    "use_workflow_target": true
                   }
                 },
                 "object_type": "definition_activity"
