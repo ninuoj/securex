@@ -11,12 +11,12 @@
         "properties": {
           "value": "",
           "scope": "local",
-          "name": "IP Address",
+          "name": "GI2.24 config",
           "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_023Y5YI1QCF8H3sgaS9fARWnykJ5eH5bXrY",
+        "unique_name": "variable_workflow_023Y5878QIT0U24BtuBpwz3pkwPTqdOGfv1",
         "object_type": "variable_workflow"
       },
       {
@@ -24,12 +24,12 @@
         "properties": {
           "value": "",
           "scope": "local",
-          "name": "GI2.24 config",
+          "name": "IP Address",
           "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_023Y5878QIT0U24BtuBpwz3pkwPTqdOGfv1",
+        "unique_name": "variable_workflow_023Y5YI1QCF8H3sgaS9fARWnykJ5eH5bXrY",
         "object_type": "variable_workflow"
       }
     ],
