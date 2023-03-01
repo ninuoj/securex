@@ -1,0 +1,92 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_023Y4U3T3WJY27fASV259krQoGOALPOLs5p",
+    "name": "Pod114 - demo ",
+    "title": "Pod114 - demo ",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Pod114 - demo ",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_023Y4TZ4RSO6P3mSkOpqtIgrv9pLGn2mnJj",
+          "run_on_all_targets": true,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ]
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_023Y4V4FJRS0M23qvCFPLt6Jacf1zk8OLoV",
+        "name": "HTTP Request",
+        "title": "getCiscoInterfaces",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/yang-data+json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "getCiscoInterfaces",
+          "method": "GET",
+          "relative_url": "restconf/data/native/interface",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target_group": true
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA"
+    ]
+  },
+  "categories": {
+    "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA": {
+      "unique_name": "category_023F8ZMF6YPJB0ITGoyHrEzHjZlzdvhmHCA",
+      "name": "Pod114",
+      "title": "Pod114",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "target_groups": {
+    "target_group_023Y4TZ4RSO6P3mSkOpqtIgrv9pLGn2mnJj": {
+      "unique_name": "target_group_023Y4TZ4RSO6P3mSkOpqtIgrv9pLGn2mnJj",
+      "name": "Pod114 - TG",
+      "title": "Pod114 - TG",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": true
+        }
+      ],
+      "object_type": "target_group"
+    }
+  }
+}
