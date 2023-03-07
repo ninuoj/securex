@@ -24,6 +24,30 @@
     "object_type": "definition_workflow",
     "actions": [
       {
+        "unique_name": "definition_activity_024339DVXGCVR7N0KTm2GXRGsBvksczDD69",
+        "name": "HTTP Request",
+        "title": "HTTP Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "HTTP Request",
+          "method": "GET",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
         "unique_name": "definition_activity_02432ZEPTD7E43Oub3e1n5BSFb6Iodp6W3i",
         "name": "HTTP Request",
         "title": "Get json template",
@@ -46,6 +70,40 @@
           "target": {
             "override_workflow_target": true,
             "target_id": "definition_target_02432Z4I09CTV6VLBv3o81Kr1NBoRqPk0Rp"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0243392MN9UZK3Z2BirAC7zurZVKrHmANqF",
+        "name": "Execute Python Script",
+        "title": "Execute Python Script",
+        "type": "python3.script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Execute Python Script",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_024336LB101OL1FqsitQUO9o6kbvkD3QpFu",
+        "name": "Generic AWS API Request",
+        "title": "Generic AWS API Request",
+        "type": "aws.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Generic AWS API Request",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
           }
         },
         "object_type": "definition_activity"
