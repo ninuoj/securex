@@ -129,7 +129,7 @@
           "action_timeout": 180,
           "continue_on_failure": false,
           "display_name": "Execute Python Script",
-          "script": "# templating \n# 1er arg: template\n# 2eme arg: NEW\n# 3eme arg: OLD\nimport jinja2\nimport json\nimport sys\n\nj2 = jinja2.Environment().from_string(sys.argv[1])\nout = j2.render(new_cfg=json.loads(sys.argv[2]), old_cfg=json.loads(sys.argv[3])) ",
+          "script": "# templating \n# 1er arg: template\n# 2eme arg: NEW\n# 3eme arg: OLD\nimport sys\nimport json\nimport jinja2\n\nj2 = jinja2.Environment().from_string(sys.argv[1])\nout = j2.render(new_cfg=json.loads(sys.argv[2]), old_cfg=json.loads(sys.argv[3])) ",
           "script_arguments": [
             "$activity.definition_activity_02432ZEPTD7E43Oub3e1n5BSFb6Iodp6W3i.output.response_body$",
             "$workflow.definition_workflow_023ZP4THLPDOS1U101xbnYQCvb8djYc38TI.local.variable_workflow_02433K7N2NIB52KR57Qis8q8bh7zuadr6ze$",
