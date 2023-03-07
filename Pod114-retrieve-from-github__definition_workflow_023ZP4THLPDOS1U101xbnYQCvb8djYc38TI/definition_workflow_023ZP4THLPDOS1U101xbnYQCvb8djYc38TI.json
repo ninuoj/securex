@@ -137,7 +137,7 @@
           "multiple_arguments": false,
           "runtime_user": {
             "override_target_runtime_user": true,
-            "runtime_user_id": "definition_runtime_user_023F8WEE5FOGM5n4kWFmq5qmJHZimJz4wL0"
+            "runtime_user_id": "definition_runtime_user_02439S5394N2I4VNmoqDiomQPZApaUwtPKJ"
           },
           "script": "python3 render_j2.py",
           "skip_execution": false,
@@ -237,19 +237,6 @@
     }
   },
   "runtime_users": {
-    "definition_runtime_user_023F8WEE5FOGM5n4kWFmq5qmJHZimJz4wL0": {
-      "unique_name": "definition_runtime_user_023F8WEE5FOGM5n4kWFmq5qmJHZimJz4wL0",
-      "name": "pod114-ssh",
-      "title": "pod114-ssh",
-      "type": "runtime_user.terminal_password_credentials",
-      "base_type": "runtime_user",
-      "object_type": "definition_runtime_user",
-      "properties": {
-        "display_name": "pod114-ssh",
-        "password": "*****",
-        "user": "sxo"
-      }
-    },
     "definition_runtime_user_023Y4SAFZ0UOM1OwDudVxlGcqOTcGuilrVv": {
       "unique_name": "definition_runtime_user_023Y4SAFZ0UOM1OwDudVxlGcqOTcGuilrVv",
       "name": "Pod114 - UserId",
