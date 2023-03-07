@@ -128,9 +128,9 @@
         "properties": {
           "action_timeout": 180,
           "arguments": [
-            "$activity.definition_activity_02432ZEPTD7E43Oub3e1n5BSFb6Iodp6W3i.output.response_body$",
-            "$workflow.definition_workflow_023ZP4THLPDOS1U101xbnYQCvb8djYc38TI.local.variable_workflow_02433K7N2NIB52KR57Qis8q8bh7zuadr6ze$",
-            "$activity.definition_activity_02433AVZ0MX552k38nY7kUoThfuexTOcZtI.output.jsonpath_queries.old_cfg$"
+            "'$activity.definition_activity_02432ZEPTD7E43Oub3e1n5BSFb6Iodp6W3i.output.response_body$'",
+            "'$workflow.definition_workflow_023ZP4THLPDOS1U101xbnYQCvb8djYc38TI.local.variable_workflow_02433K7N2NIB52KR57Qis8q8bh7zuadr6ze$'",
+            "'$activity.definition_activity_02433AVZ0MX552k38nY7kUoThfuexTOcZtI.output.jsonpath_queries.old_cfg$'"
           ],
           "continue_on_failure": false,
           "display_name": "Execute Linux/Unix SSH Script",
@@ -139,7 +139,7 @@
             "override_target_runtime_user": true,
             "runtime_user_id": "definition_runtime_user_02439S5394N2I4VNmoqDiomQPZApaUwtPKJ"
           },
-          "script": "python3 render_j2.py",
+          "script": "/home/ec2-user/render_j2.py",
           "skip_execution": false,
           "target": {
             "override_workflow_target": true,
