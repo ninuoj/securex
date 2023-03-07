@@ -120,6 +120,35 @@
         "object_type": "definition_activity"
       },
       {
+        "unique_name": "definition_activity_02439OY3N0Z361Nwdpyejc6qUvaSH5u2QHX",
+        "name": "Execute Linux/Unix SSH Script",
+        "title": "Execute Linux/Unix SSH Script",
+        "type": "terminal.ssh_script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "arguments": [
+            "$activity.definition_activity_02432ZEPTD7E43Oub3e1n5BSFb6Iodp6W3i.output.response_body$",
+            "$workflow.definition_workflow_023ZP4THLPDOS1U101xbnYQCvb8djYc38TI.local.variable_workflow_02433K7N2NIB52KR57Qis8q8bh7zuadr6ze$",
+            "$activity.definition_activity_02433AVZ0MX552k38nY7kUoThfuexTOcZtI.output.jsonpath_queries.old_cfg$"
+          ],
+          "continue_on_failure": false,
+          "display_name": "Execute Linux/Unix SSH Script",
+          "multiple_arguments": false,
+          "runtime_user": {
+            "override_target_runtime_user": true,
+            "runtime_user_id": "definition_runtime_user_023F8WEE5FOGM5n4kWFmq5qmJHZimJz4wL0"
+          },
+          "script": "python3 render_j2.py",
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_02439SOGV9RRF3UUPUKRNWo9LrfhsEb8MWo"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
         "unique_name": "definition_activity_0243392MN9UZK3Z2BirAC7zurZVKrHmANqF",
         "name": "Execute Python Script",
         "title": "Execute Python Script",
@@ -190,9 +219,37 @@
         "path": "ninuoj/jinja2/raw/main/",
         "protocol": "https"
       }
+    },
+    "definition_target_02439SOGV9RRF3UUPUKRNWo9LrfhsEb8MWo": {
+      "unique_name": "definition_target_02439SOGV9RRF3UUPUKRNWo9LrfhsEb8MWo",
+      "name": "Pod 114 - Linux EndPoint",
+      "title": "Pod 114 - Linux EndPoint",
+      "type": "terminal.unix_linux_endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "bash_shell": "/bin/bash",
+        "default_runtime_user_id": "definition_runtime_user_02439S5394N2I4VNmoqDiomQPZApaUwtPKJ",
+        "display_name": "Pod 114 - Linux EndPoint",
+        "host": "3.70.231.52",
+        "port": 22
+      }
     }
   },
   "runtime_users": {
+    "definition_runtime_user_023F8WEE5FOGM5n4kWFmq5qmJHZimJz4wL0": {
+      "unique_name": "definition_runtime_user_023F8WEE5FOGM5n4kWFmq5qmJHZimJz4wL0",
+      "name": "pod114-ssh",
+      "title": "pod114-ssh",
+      "type": "runtime_user.terminal_password_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "pod114-ssh",
+        "password": "*****",
+        "user": "sxo"
+      }
+    },
     "definition_runtime_user_023Y4SAFZ0UOM1OwDudVxlGcqOTcGuilrVv": {
       "unique_name": "definition_runtime_user_023Y4SAFZ0UOM1OwDudVxlGcqOTcGuilrVv",
       "name": "Pod114 - UserId",
@@ -205,6 +262,19 @@
         "basic_password": "*****",
         "basic_username": "cisco",
         "display_name": "Pod114 - UserId"
+      }
+    },
+    "definition_runtime_user_02439S5394N2I4VNmoqDiomQPZApaUwtPKJ": {
+      "unique_name": "definition_runtime_user_02439S5394N2I4VNmoqDiomQPZApaUwtPKJ",
+      "name": "Pod114 - Key",
+      "title": "Pod114 - Key",
+      "type": "runtime_user.terminal_key_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "Pod114 - Key",
+        "key": "*****",
+        "user": "ec2-user"
       }
     }
   }
