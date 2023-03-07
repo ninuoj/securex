@@ -9,7 +9,7 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "{\n    \"ip\": \"10.0.1.254\",\n    \"mask\" : \"255.255.255.0\"\n}",
+          "value": "{\n    \"address\": \"10.0.1.254\",\n    \"mask\" : \"255.255.255.0\"\n}",
           "scope": "local",
           "name": "new_cfg",
           "type": "datatype.string",
